@@ -1528,45 +1528,209 @@
                 backToTopBtn.classList.add('visible');
             } else {
                 backToTopBtn.classList.remove('visible');
-            }
-        });
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AHSEC Adda - Learn with Anime Magic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Orbitron:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #fefefe;
+            --primary: #ff6bcb;
+            --secondary: #6c5ce7;
+            --dark: #1e1e2f;
+            --anime-accent: #ffeaa7;
+            --card-bg: #ffffff;
+            --shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }* {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-        // Ripple Effect for Buttons
-        const downloadBtns = document.querySelectorAll('.download-btn');
-        
-        downloadBtns.forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                const x = e.clientX - e.target.getBoundingClientRect().left;
-                const y = e.clientY - e.target.getBoundingClientRect().top;
-                
-                const ripple = document.createElement('span');
-                ripple.classList.add('ripple');
-                ripple.style.left = `${x}px`;
-                ripple.style.top = `${y}px`;
-                
-                this.appendChild(ripple);
-                
-                setTimeout(() => {
-                    ripple.remove();
-                }, 600);
-            });
-        });
+    body {
+        font-family: 'Nunito', sans-serif;
+        background-color: var(--bg);
+        color: var(--dark);
+    }
 
-        // Form Submission
-        const contactForm = document.getElementById('contactForm');
-        const newsletterForm = document.getElementById('newsletterForm');
-        
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Thank you for your message! We will get back to you soon.');
-            contactForm.reset();
-        });
-        
-        newsletterForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Thank you for subscribing to our newsletter!');
-            newsletterForm.reset();
-        });
-    </script>
+    nav {
+        background-color: var(--card-bg);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        box-shadow: var(--shadow);
+    }
+
+    .logo {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.5rem;
+        color: var(--primary);
+    }
+
+    .nav-links a {
+        margin-left: 1.5rem;
+        text-decoration: none;
+        color: var(--dark);
+        font-weight: 600;
+        transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+        color: var(--primary);
+    }
+
+    .hero {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 3rem 1rem;
+        background: linear-gradient(to right, #f5f7fa, #ffeaa7);
+    }
+
+    .hero img {
+        max-width: 300px;
+        border-radius: 50%;
+        box-shadow: var(--shadow);
+    }
+
+    .hero h1 {
+        margin-top: 1.5rem;
+        font-size: 2.5rem;
+        color: var(--secondary);
+    }
+
+    .hero p {
+        font-size: 1.1rem;
+        max-width: 600px;
+        margin-top: 1rem;
+        color: #555;
+    }
+
+    .section {
+        padding: 3rem 2rem;
+    }
+
+    .section h2 {
+        text-align: center;
+        color: var(--primary);
+        margin-bottom: 2rem;
+    }
+
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+    }
+
+    .card {
+        background-color: var(--card-bg);
+        border-radius: 10px;
+        padding: 1.5rem;
+        box-shadow: var(--shadow);
+        transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+    }
+
+    .card img {
+        width: 100%;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+    }
+
+    .card h3 {
+        font-size: 1.2rem;
+        color: var(--secondary);
+    }
+
+    .card p {
+        font-size: 0.95rem;
+        color: #666;
+    }
+
+    footer {
+        background-color: var(--dark);
+        color: white;
+        text-align: center;
+        padding: 2rem;
+    }
+
+    footer p {
+        font-size: 0.9rem;
+    }
+
+    .anime-bg {
+        background-image: url('https://i.ibb.co/tZB7pGH/anime-study-girl.jpg');
+        background-size: cover;
+        background-position: center;
+        height: 300px;
+        border-radius: 20px;
+        margin: 2rem 0;
+        box-shadow: var(--shadow);
+    }
+</style>
+
+</head>
+<body>
+    <nav>
+        <div class="logo">AHSEC Adda</div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#poems">Poems</a>
+            <a href="#stories">Stories</a>
+            <a href="#videos">Videos</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav><section class="hero" id="home">
+    <img src="https://i.ibb.co/XbcJDNC/anime-avatar.png" alt="Anime Avatar">
+    <h1>Learn Literature with Hinglish & Anime Magic!</h1>
+    <p>Explore poems, stories, and English concepts in Hinglish with visuals, anime-style prompts, and a storytelling vibe that sticks with you.</p>
+</section>
+
+<section class="anime-bg"></section>
+
+<section class="section" id="poems">
+    <h2>Poem Explanations</h2>
+    <div class="card-grid">
+        <div class="card">
+            <img src="https://i.ibb.co/7j0x6YK/anime-daffodils.jpg" alt="Daffodils">
+            <h3>Daffodils - Wordsworth</h3>
+            <p>"I wandered lonely as a cloud..." अब समझो इस कविता को आसान Hinglish में, anime scene के साथ!</p>
+        </div>
+        <div class="card">
+            <img src="https://i.ibb.co/QHX6CRK/anime-ozymandias.jpg" alt="Ozymandias">
+            <h3>Ozymandias - Shelley</h3>
+            <p>"Look on my Works, ye Mighty, and despair!" अब समझो इस line के पीछे की philosophy.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="stories">
+    <h2>Story Breakdowns</h2>
+    <div class="card-grid">
+        <div class="card">
+            <img src="https://i.ibb.co/5cLHRk7/anime-last-lesson.jpg" alt="The Last Lesson">
+            <h3>The Last Lesson - Alphonse Daudet</h3>
+            <p>French classroom, fear, patriotism — इसे समझो एक relatable Hinglish narration के साथ, anime expressions के जरिए.</p>
+        </div>
+        <div class="card">
+            <img src="https://i.ibb.co/TB7x78F/anime-necklace.jpg" alt="The Necklace">
+            <h3>The Necklace - Maupassant</h3>
+            <p>एक गलती, पूरी ज़िंदगी की सज़ा — इस कहानी को decode करो emotional और visually rich format में।</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>Copyright &copy; 2025 AHSEC Adda | Learn with Hinglish & Anime</p>
+</footer>
+
 </body>
 </html>
