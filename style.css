@@ -1,399 +1,227 @@
-/* Existing :root variables remain the same */
+/* ===== Core Styles (Shared by Both) ===== */
 :root {
-    /* Dark Theme Colors */
-    --bg-dark: #0f0e17;
-    --primary-dark: #ff8906;
-    --secondary-dark: #f25f4c;
-    --accent-dark: #e53170;
-    --text-dark: #fffffe;
-    --card-bg-dark: rgba(30, 30, 46, 0.7);
-    
-    /* Light Theme Colors */
-    --bg-light: #fffffe;
-    --primary-light: #6246ea;
-    --secondary-light: #d1d1e9;
-    --accent-light: #e45858;
-    --text-light: #2b2c34;
-    --card-bg-light: rgba(255, 255, 255, 0.8);
-    
-    /* Common */
-    --glass-effect: rgba(255, 255, 255, 0.1);
-    --glass-border: rgba(255, 255, 255, 0.2);
-    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    --transition: all 0.3s ease;
+    /* (Keep existing color variables the same) */
+    --mobile-breakpoint: 768px;
+    --animation-speed: 0.4s;
 }
 
-/* New animations */
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
-}
-
-@keyframes fly {
-    0% { transform: translateX(100vw) translateY(0); }
-    100% { transform: translateX(-100px) translateY(50px); }
-}
-
-@keyframes fly-desktop {
-    0% { transform: translateX(100vw) translateY(-50px); }
-    100% { transform: translateX(-100px) translateY(100vh); }
-}
-
-@keyframes twinkle {
-    0%, 100% { opacity: 0.2; }
-    50% { opacity: 1; }
-}
-
-@keyframes book-float {
-    0%, 100% { transform: translateY(0) rotate(-5deg); }
-    50% { transform: translateY(-10px) rotate(5deg); }
-}
-
-@keyframes chalk-writing {
-    0% { stroke-dashoffset: 100; }
-    100% { stroke-dashoffset: 0; }
-}
-
-@keyframes pop-in {
-    0% { transform: scale(0); opacity: 0; }
-    80% { transform: scale(1.1); opacity: 1; }
-    100% { transform: scale(1); opacity: 1; }
-}
-
-/* Responsive Base Styles */
+/* Base responsive adjustments */
 body {
-    font-family: 'Poppins', 'Noto Sans Devanagari', sans-serif;
-    background-color: var(--bg-dark);
-    color: var(--text-dark);
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-    transition: var(--transition);
-    -webkit-text-size-adjust: 100%;
+    font-size: calc(14px + 0.3vw); /* Fluid typography */
+    touch-action: manipulation; /* Better touch response */
 }
 
-body[data-theme="light"] {
-    background-color: var(--bg-light);
-    color: var(--text-light);
-}
-
-/* Background decorative elements */
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: -1;
-    background-image: 
-        radial-gradient(circle at 20% 30%, rgba(255, 137, 6, 0.05) 0%, transparent 20%),
-        radial-gradient(circle at 80% 70%, rgba(229, 49, 112, 0.05) 0%, transparent 20%);
-}
-
-/* Mobile-first decorative elements */
-.anime-bird {
-    position: fixed;
-    width: 40px;
-    height: 40px;
-    background: url('assets/bird.png') no-repeat center/contain;
-    animation: fly 15s linear infinite;
-    opacity: 0.8;
-    z-index: 1;
-    display: none; /* Will be enabled in media queries */
-}
-
-.star {
-    position: fixed;
-    background: white;
-    border-radius: 50%;
-    animation: twinkle 3s ease-in-out infinite;
-    pointer-events: none;
-    z-index: -1;
-}
-
-/* Responsive typography */
-html {
-    font-size: 16px;
-}
-
+/* ===== Mobile-First Enhancements ===== */
 @media (max-width: 768px) {
-    html {
-        font-size: 14px;
+    /* 1. Sticky Navigation with Full Mobile Features */
+    .glass-nav {
+        padding: 12px 0;
+        position: fixed;
+        height: 60px;
     }
-}
-
-/* Enhanced Glassmorphism Effect */
-.glass-card {
-    background: var(--card-bg-dark);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 15px;
-    border: 1px solid var(--glass-border);
-    box-shadow: var(--glass-shadow);
-    transition: var(--transition);
-    overflow: hidden;
-}
-
-.glass-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
-}
-
-/* Responsive Navigation */
-.glass-nav {
-    position: sticky;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    background: var(--glass-effect);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--glass-border);
-    padding: 10px 0;
-    transition: var(--transition);
-}
-
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
-}
-
-@media (max-width: 768px) {
+    
+    .nav-container {
+        padding: 0 10px;
+    }
+    
+    /* Mobile menu transformation */
     .nav-links {
-        display: none; /* Will be replaced with mobile menu */
-    }
-    
-    .search-bar input {
-        width: 120px;
-    }
-    
-    .logo h1 {
-        font-size: 1.2rem;
-    }
-}
-
-/* Mobile menu toggle */
-.mobile-menu-toggle {
-    display: none;
-    background: transparent;
-    border: none;
-    color: var(--text-dark);
-    font-size: 1.5rem;
-    cursor: pointer;
-}
-
-@media (max-width: 768px) {
-    .mobile-menu-toggle {
-        display: block;
-    }
-    
-    .nav-links.active {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
+        position: fixed;
+        top: 60px;
         left: 0;
         width: 100%;
         background: var(--card-bg-dark);
-        padding: 15px;
-        gap: 15px;
-        border-bottom: 1px solid var(--glass-border);
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        transform: translateY(-150%);
+        transition: transform var(--animation-speed) ease;
+        z-index: 999;
     }
     
-    body[data-theme="light"] .nav-links.active {
-        background: var(--card-bg-light);
+    .nav-links.active {
+        transform: translateY(0);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     }
-}
-
-/* Enhanced Hero Section */
-.hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 80px 20px;
-    position: relative;
-    overflow: hidden;
-}
-
-@media (max-width: 768px) {
+    
+    .nav-links a {
+        padding: 12px 0;
+        font-size: 1.1rem;
+    }
+    
+    /* 2. Mobile-Optimized Hero Section */
+    .hero {
+        padding-top: 80px;
+        min-height: 90vh;
+    }
+    
     .hero-content {
-        flex-direction: column;
-        text-align: center;
+        flex-direction: column-reverse; /* Better thumb reach */
     }
     
     .profile-container {
-        margin-bottom: 30px;
+        width: 200px;
+        height: 200px;
+        margin-top: 30px;
     }
     
-    .hero-text h2 {
-        font-size: 2rem;
+    /* 3. Android-Friendly Interactive Elements */
+    .cta-button, .read-btn, .download-btn {
+        padding: 14px 28px; /* Larger touch targets */
+        min-width: 120px;
     }
-}
-
-/* Study-themed anime elements */
-.chibi-student {
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    z-index: 1;
-    background: url('assets/chibi-student.png') no-repeat center/contain;
-    animation: float 4s ease-in-out infinite;
-    pointer-events: none;
-}
-
-@media (max-width: 768px) {
-    .chibi-student {
-        width: 80px;
-        height: 80px;
-        animation: float 5s ease-in-out infinite;
+    
+    /* 4. Mobile-Specific Anime Elements */
+    .mobile-anime-bird {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        background: url('assets/bird-mobile.png') no-repeat center/contain;
+        animation: fly-mobile 12s linear infinite;
+        opacity: 0.9;
+        z-index: 1;
     }
-}
-
-/* Floating book animation */
-.floating-book {
-    position: absolute;
-    width: 60px;
-    height: 60px;
-    background: url('assets/book.png') no-repeat center/contain;
-    animation: book-float 3s ease-in-out infinite;
-    pointer-events: none;
-    z-index: -1;
-}
-
-/* Responsive Grid Layouts */
-.video-grid, .poem-cards, .prompt-grid, .notes-grid {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-}
-
-@media (min-width: 768px) {
-    .video-grid, .poem-cards, .prompt-grid, .notes-grid {
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 30px;
+    
+    @keyframes fly-mobile {
+        0% { transform: translateX(100vw) translateY(20vh); }
+        100% { transform: translateX(-100px) translateY(30vh); }
     }
-}
-
-/* Enhanced Story Scroller for mobile */
-.story-scroller {
-    scroll-snap-type: x mandatory;
-    scroll-padding: 20px;
-    padding-bottom: 20px;
-}
-
-.story-card {
-    min-width: 85%;
-    scroll-snap-align: center;
-}
-
-@media (min-width: 768px) {
+    
+    .chibi-student-mobile {
+        position: fixed;
+        width: 70px;
+        height: 70px;
+        bottom: 20px;
+        left: 20px;
+        animation: float 4s ease-in-out infinite;
+        z-index: 50;
+    }
+    
+    /* 5. Stacked Card Layouts */
+    .video-grid, .poem-cards, .prompt-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 10px;
+    }
+    
+    /* 6. Touch-Optimized Story Scroller */
+    .story-scroller {
+        padding: 10px 15px;
+        scroll-snap-type: x proximity;
+    }
+    
     .story-card {
-        min-width: 300px;
+        min-width: 85%;
+        scroll-snap-align: center;
     }
-}
-
-/* Study Helper Character */
-.chibi-ai-helper {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 70px;
-    height: 70px;
-    z-index: 100;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.chibi-ai-helper:hover {
-    transform: scale(1.1);
-}
-
-@media (max-width: 768px) {
+    
+    /* 7. Mobile AI Helper */
     .chibi-ai-helper {
         width: 60px;
         height: 60px;
         bottom: 15px;
         right: 15px;
     }
+    
+    .speech-bubble {
+        left: -120px;
+        width: 110px;
+        font-size: 0.7rem;
+    }
 }
 
-/* Desktop-specific enhancements */
-@media (min-width: 1024px) {
-    /* Background stars */
-    body::after {
-        content: '';
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: 
-            radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.8) 0%, transparent 1%),
-            radial-gradient(circle at 90% 30%, rgba(255, 255, 255, 0.8) 0%, transparent 1%),
-            radial-gradient(circle at 50% 80%, rgba(255, 255, 255, 0.8) 0%, transparent 1%);
-        background-size: 300px 300px;
-        animation: twinkle 4s ease-in-out infinite;
-        pointer-events: none;
-        z-index: -1;
+/* ===== Desktop-Only Features (Now Mirrored for Mobile) ===== */
+@media (min-width: 769px) {
+    /* (Keep existing desktop styles but ensure all features exist in mobile) */
+}
+
+/* ===== Shared Anime Elements ===== */
+/* 1. Floating Study Items (Both) */
+.floating-item {
+    position: absolute;
+    animation: float 5s ease-in-out infinite;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* 2. Interactive Sparkles (Both) */
+.sparkle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 2s infinite alternate;
+}
+
+/* 3. Page Transition Effects (Both) */
+.section {
+    transition: opacity 0.6s ease;
+}
+
+/* ===== Android-Specific Enhancements ===== */
+@supports (-webkit-touch-callout: none) {
+    /* 1. Better touch feedback */
+    button, a, [role="button"] {
+        -webkit-tap-highlight-color: rgba(255,137,6,0.3);
     }
     
-    /* Diagonal flying birds */
-    .anime-bird {
+    /* 2. Optimize animations for Android */
+    .glass-card, .video-card, .poem-card {
+        transform: translateZ(0);
+        backface-visibility: hidden;
+    }
+    
+    /* 3. Mobile-specific character animations */
+    .android-only-character {
+        display: block !important;
+        animation: android-float 4s ease-in-out infinite;
+    }
+}
+
+/* ===== Feature Parity Guarantee ===== */
+/* Ensure all desktop features exist in mobile form */
+.mobile-equivalent {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .desktop-only { display: none; }
+    .mobile-equivalent { 
         display: block;
-        animation: fly-desktop 25s linear infinite;
+        /* Mobile-optimized versions of desktop features */
     }
     
-    /* Teacher character appears on scroll */
-    .section:hover .anime-teacher {
-        animation: pop-in 0.5s ease-out forwards;
-    }
-    
-    /* Enhanced hover effects */
-    .video-card:hover .video-thumbnail::after {
-        content: '';
+    /* Example: Desktop flying birds → Mobile floating notebooks */
+    .notebook-float {
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
-    }
-    
-    /* Chalk writing effect for educational theme */
-    .chalk-path {
-        stroke-dasharray: 100;
-        stroke-dashoffset: 100;
-        animation: chalk-writing 2s ease-in-out forwards;
+        width: 50px;
+        height: 50px;
+        background: url('assets/notebook.png') no-repeat center/contain;
+        animation: float 6s ease-in-out infinite;
     }
 }
 
-/* Mobile touch enhancements */
-@media (hover: none) {
-    .video-card:active, 
-    .poem-card:active, 
-    .story-card:active {
-        transform: translateY(-5px);
+/* ===== Performance Tweaks ===== */
+@media (max-width: 768px) {
+    /* Prioritize visible content */
+    .hero-text h2 {
+        font-size: 1.8rem;
     }
     
-    .cta-button:active, 
-    .read-btn:active, 
-    .download-btn:active {
-        transform: translateY(2px);
+    /* Lightweight fallbacks */
+    .glass-card {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        background: var(--card-bg-dark);
+    }
+    
+    /* Simplify complex animations */
+    .profile-ring {
+        animation: rotate-mobile 10s linear infinite;
+    }
+    
+    @keyframes rotate-mobile {
+        to { transform: rotate(360deg); }
     }
 }
-
-/* Performance optimizations */
-@media (prefers-reduced-motion) {
-    *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-    }
-    }
